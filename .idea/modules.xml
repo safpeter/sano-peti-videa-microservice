@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/api-gateway-app/api-gateway-app.iml" filepath="$PROJECT_DIR$/api-gateway-app/api-gateway-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recommendation-app/recommendation-app.iml" filepath="$PROJECT_DIR$/recommendation-app/recommendation-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-registry-app/service-registry-app.iml" filepath="$PROJECT_DIR$/service-registry-app/service-registry-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/video-service-app/video-service-app.iml" filepath="$PROJECT_DIR$/video-service-app/video-service-app.iml" />
+    </modules>
+  </component>
+</project>

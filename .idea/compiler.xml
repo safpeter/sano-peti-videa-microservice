@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway-app" />
+        <module name="service-registry-app" />
+        <module name="recommendation-app" />
+        <module name="video-service-app" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway-app" target="11" />
+      <module name="recommendation-app" target="11" />
+      <module name="service-registry" target="1.8" />
+      <module name="service-registry-app" target="11" />
+      <module name="video-service-app" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway-app" options="-parameters" />
+      <module name="recommendation-app" options="-parameters" />
+      <module name="service-registry" options="-parameters" />
+      <module name="service-registry-app" options="-parameters" />
+      <module name="video-service-app" options="-parameters" />
+    </option>
+  </component>
+</project>
