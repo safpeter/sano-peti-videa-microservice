@@ -60,7 +60,7 @@ export default new Vuex.Store({
       })
       .then(response => (context.commit("setAllVideos", response.data)));
     },
-    sendRecommendation(sendForm,id){
+    sendRecommendation(sendForm, id){
       axios({
         method:"POST",
         url:`http://localhost:8760/videos/newrecommendation/${id}`,

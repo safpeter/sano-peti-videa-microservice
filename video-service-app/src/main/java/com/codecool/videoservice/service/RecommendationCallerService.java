@@ -18,7 +18,7 @@ public class RecommendationCallerService {
     private String baseUrl;
 
     public Recommendation[] getRecommendations(Long videoId) {
-        ResponseEntity<Recommendation[]> response = restTemplate.getForEntity(baseUrl + videoId, Recommendation[].class);
+        ResponseEntity<Recommendation[]> response = restTemplate.getForEntity(baseUrl + "/" + videoId, Recommendation[].class);
         return response.getBody();
     }
 
