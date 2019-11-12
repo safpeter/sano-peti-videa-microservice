@@ -22,12 +22,7 @@ const routes = [
     component: () =>
       import("../views/VideoDetails.vue")
   },
-  {
-  path: "/videos/:id/newcomment",
-  name: "newcomment",
-  component: () =>
-    import("../views/NewComment.vue")
-},
+ 
  
 ];
 

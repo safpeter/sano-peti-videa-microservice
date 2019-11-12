@@ -35,13 +35,13 @@ public class DataInit implements CommandLineRunner {
         recomRepository.save(Recommendation.builder()
                 .rating(2)
                 .comment("They were so much better back in the 80's.")
-                .videoId(4L)
+                .videoId(3L)
                 .build());
 
         recomRepository.save(Recommendation.builder()
                 .rating(4)
                 .comment("Reservoir Dogs brought me here.")
-                .videoId(4L)
+                .videoId(3L)
                 .build());
     }
 

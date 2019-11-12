@@ -11,28 +11,23 @@
     <v-form align="center"
       ref="form"
       v-model="valid"
-      :lazy-validation="lazy"
-    >
+      :lazy-validation="lazy">
       <v-text-field
         v-model="rating"
         label="Your Rating"
         required
       ></v-text-field>
-
       <v-text-field
         v-model="comment"
         label="Your Comment"
         required
       ></v-text-field>
-
       <v-btn
         color="success"
         class="mr-4"
         @click="sendRecommendation(video.id)"
       >Send Recommendation
       </v-btn>
-
-    
     </v-form>
     </v-container>
   </v-row>
@@ -40,14 +35,21 @@
 </template>
 
 <script>
-
 export default {
- 
-  name: "videodetails",
-  data(){
-    return{
-    }
-  },
+ name: "videodetails",
+   data: () => ({
+      valid: true,
+      rating: '',
+      nameRules: [
+        v => !!v || 'You have to rate this video!',
+      ],
+      comment: '',
+      urlRules: [
+        v => !!v || 'You have to write a comment!',
+      ],
+      checkbox:false,
+      lazy: false,
+    }),
   computed: {
     video() {
         return this.$store.state.video;
@@ -61,13 +63,17 @@ export default {
        if (this.$refs.form.validate()) {
         this.snackbar = true;
       }
-      this.$router.push("/videos/" + id);
-      this.$store.dispatch("sendRecommendation", id, {
-      name: this.rating,
-      url: this.comment,
+      this.$store.dispatch("sendRecommendation", id ,{
+      rating: this.rating,
+      comment: this.comment,
     });
      },
-   
-  }
+  },
+    reset () {
+        this.$refs.form.reset()
+      },
+      resetValidation () {
+        this.$refs.form.resetValidation()
+      },
 };
 </script>

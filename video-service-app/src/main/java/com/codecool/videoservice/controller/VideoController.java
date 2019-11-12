@@ -10,9 +10,7 @@ import com.codecool.videoservice.repository.VideoRepository;
 import com.codecool.videoservice.service.RecommendationCallerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -55,6 +53,7 @@ public class VideoController {
     @PostMapping("/newrecommendation/{videoId}")
     public NewRecommendation addNewRecommendation(@PathVariable("videoId")Long videoId,@RequestBody NewRecommendation recommendation){
        log.info("teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        System.out.println(recommendation);
         return NewRecommendation.builder()
                 .comment(recommendation.getComment())
                 .rating(recommendation.getRating())
