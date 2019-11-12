@@ -1,8 +1,10 @@
 <template> 
 <div>
+    <p class="orange--text display-1">{{video.name}}</p>
     <iframe width="640" height="360" :src="this.video.url" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p class="orange--text">Ratings and Comments:</p>
 <ul>
-  <li v-for="recommendation in recommendations"  :key="recommendation.id"> Rating: {{recommendation.rating}} Comment {{recommendation.comment}}  </li>
+  <li class="orange--text" v-for="recommendation in recommendations"  :key="recommendation.id"> Rating: {{recommendation.rating}}~~~ Comment: {{recommendation.comment}}  </li>
 </ul>
 <v-row align="center">
     <v-container  text-xs-center>
@@ -26,8 +28,7 @@
       <v-btn
         color="success"
         class="mr-4"
-        @click="sendRecommendation(this.videoo.id)"
-        v-model="videoo"
+        @click="sendRecommendation(video.id)"
       >Send Recommendation
       </v-btn>
 
@@ -39,14 +40,12 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
  
   name: "videodetails",
   data(){
     return{
-        videoo:{}
     }
   },
   computed: {
@@ -62,15 +61,13 @@ export default {
        if (this.$refs.form.validate()) {
         this.snackbar = true;
       }
-      this.$router.push("/videos/" + videoo.id);
-      this.$store.dispatch("sendRecommendation", {
+      this.$router.push("/videos/" + id);
+      this.$store.dispatch("sendRecommendation", id, {
       name: this.rating,
       url: this.comment,
     });
      },
-    goTo(){
-      this.$router.push(`/videos/${this.video.id}/newcomment`)
-    }
+   
   }
 };
 </script>

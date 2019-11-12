@@ -27,6 +27,12 @@ public class DataInit implements CommandLineRunner {
                 .build());
 
         recomRepository.save(Recommendation.builder()
+                .rating(5)
+                .comment("...Getting High in the morning,buying things on the internet..Sports!!")
+                .videoId(2L)
+                .build());
+
+        recomRepository.save(Recommendation.builder()
                 .rating(2)
                 .comment("They were so much better back in the 80's.")
                 .videoId(4L)
