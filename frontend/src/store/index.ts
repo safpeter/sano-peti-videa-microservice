@@ -9,7 +9,8 @@ export default new Vuex.Store({
     allVideos:[],
     result:"false",
     video:{},
-    recommendations: []
+    recommendations: [],
+    newRecommendation : {}
   },
   mutations: {
     setVideo(state, video){
@@ -20,7 +21,10 @@ export default new Vuex.Store({
     },
     setRecommendation(state, recommendations){
       state.recommendations = recommendations
-    }
+    },
+    setNewRecommendation(state, recommendation){
+        state.newRecommendation = recommendation
+    },
   },
   actions: {
     getAVideo(context, id){
@@ -60,17 +64,18 @@ export default new Vuex.Store({
       })
       .then(response => (context.commit("setAllVideos", response.data)));
     },
-    sendRecommendation(id,sendForm){
+    sendRecommendation(context,sendForm){
       axios({
         method:"POST",
-        url:`http://localhost:8760/videos/newrecommendation/${id}`,
         data:sendForm,
+        url:`http://localhost:8760/videos/newrecommendation/${sendForm.id}`,
         headers:{
         "Access-Controll-Allow-Origin" : "*",
         "cache-control" : "no-cache",
         "Content-Type" : "application/json"
         }
       })
+      .then(response => (context.commit("setNewRecommendation", response.data)));
     }
 
   },

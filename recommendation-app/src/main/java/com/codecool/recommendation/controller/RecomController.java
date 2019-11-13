@@ -24,14 +24,13 @@ public class RecomController {
     }
 
     @PostMapping("/newrecommendation/{videoId}")
-    public void uploadRecommendation(@PathVariable("videoId") Long videoId, @RequestBody NewRecommendation recommendation) {
-        recomRepository.save(
-                Recommendation.builder()
-                        .comment(recommendation.getComment())
-                        .rating(recommendation.getRating())
-                        .videoId(videoId)
-                        .build()
-        );
+    public boolean uploadRecommendation(@PathVariable("videoId") Long videoId, @RequestBody Recommendation recommendation) {
+        if(recommendation.getRating() == 0 ){
+            return false;
+        } else {
+            recomRepository.save(recommendation);
+            return true;
+        }
     }
 
 }

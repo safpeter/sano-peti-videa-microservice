@@ -10,8 +10,12 @@ import com.codecool.videoservice.repository.VideoRepository;
 import com.codecool.videoservice.service.RecommendationCallerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -19,6 +23,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/videos")
 public class VideoController {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${recomservice.url}")
+    String recomUrl;
+
+    @Autowired
+    HttpHeaders httpHeaders;
 
     @Autowired
     private VideoRepository videoRepository;
@@ -51,14 +64,13 @@ public class VideoController {
     }
 
     @PostMapping("/newrecommendation/{videoId}")
-    public NewRecommendation addNewRecommendation(@PathVariable("videoId")Long videoId,@RequestBody NewRecommendation recommendation){
-       log.info("teeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    public boolean addNewRecommendation(@PathVariable("videoId")Long videoId,@RequestBody NewRecommendation recommendation){
+        httpHeaders.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        recommendation.setVideoId(videoId);
+        HttpEntity<NewRecommendation> entity = new HttpEntity<>(recommendation, httpHeaders);
         System.out.println(recommendation);
-        return NewRecommendation.builder()
-                .comment(recommendation.getComment())
-                .rating(recommendation.getRating())
-                .videoId(videoId)
-                .build();
+        ResponseEntity<Boolean> s = restTemplate.exchange(recomUrl + "/newrecommendation/" + videoId, HttpMethod.POST, entity, Boolean.class);
+        return s.getBody();
     }
 
 

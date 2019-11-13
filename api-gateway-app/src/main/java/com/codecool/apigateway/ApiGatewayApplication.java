@@ -12,11 +12,12 @@ import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 @EnableEurekaClient
 public class 	ApiGatewayApplication {
 
+	@Autowired
+	ZuulProperties zuulProperties;
+
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
 	}
 
-	@Autowired
-	ZuulProperties zuulProperties;
 
 }
